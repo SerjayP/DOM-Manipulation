@@ -4,5 +4,99 @@ let quotes = [
   `You can have any brew you want... as long as it's a Corona.`,
   `You almost had me? You never had me - you never had your car!`,
   `I don't have friends. I have family.`,
-  `It don't matter if you win by an inch or a mile. Winning's winning.`
+  `It don't matter if you win by an inch or a mile. Winning's winning.`,
 ];
+// Part 1
+function newTitle(str) {
+  document.getElementById("main-title").innerHTML = str;
+}
+newTitle("DOM's Hangout");
+
+// Part 2
+function newColor(color) {
+  document.body.style.backgroundColor = color;
+}
+newColor("#ff6700");
+
+// Part 3
+function removeLast() {
+  const lastFav = document.getElementById("favorite-things");
+  lastFav.removeChild(lastFav.lastElementChild);
+}
+removeLast();
+
+// Part 4
+function newFontSize(size) {
+  document.querySelectorAll(".special-title").forEach((title) => {
+    title.style.fontSize = size;
+  });
+}
+newFontSize("2rem");
+
+// Part 5
+function removeWord(str) {
+  let neverRaced = document.querySelectorAll("#past-races > li");
+  for (let i = 0; i < neverRaced.length; i++) {
+    if (neverRaced[i].innerHTML === str) {
+      neverRaced[i].parentNode.removeChild(neverRaced[i]);
+    }
+  }
+}
+removeWord("Chicago");
+
+// Part 6
+function addCity(city) {
+  let newCity = document.createElement("li");
+  // newCity.classList.createElement
+  newCity.textContent = city;
+  // neverRaced.appendChild(newCity) DID NOT WORK.
+  document.getElementById("past-races").append(newCity);
+}
+addCity('Brooklyn')
+addCity('Austin')
+
+// Part 7
+function newBlogPost(city, sentence){
+let newDiv = document.createElement("div");
+let newH1 = document.createElement("h1");
+let newP = document.createElement("p");
+newDiv.classList.add("blog-post", "purple");
+newH1.textContent = city;
+newP.textContent = sentence;
+newDiv.append(newH1, newP);
+document.querySelector(".main").appendChild(newDiv);
+}
+newBlogPost('Brooklyn', "I raced down FLatbush ave and drove into the Barclays Center!")
+newBlogPost('Austin', "I raced through the Live Music Capital of the World!")
+
+// Part 8
+const randomQuote = function () {
+  document.querySelector("#quote-of-the-day").innerText = `"${
+    quotes[Math.floor(Math.random() * quotes.length)]
+  }"`;
+};
+function newQuote(ele){
+const pickQuote = document.querySelector(ele);
+
+pickQuote.addEventListener(
+  "click",
+  function () {
+    randomQuote();
+  },
+  randomQuote()
+);
+}
+newQuote("#quote-title")
+
+// Part 9
+let blogPost = document.querySelectorAll(".blog-post");
+
+blogPost.forEach(function (post) {
+  console.log(post);
+  post.addEventListener("mouseOut", function () {
+    post.classList.toggle("orange");
+  });
+  post.addEventListener('mouseenter', function() {
+    post.classList.toggle('red');
+  });
+});
