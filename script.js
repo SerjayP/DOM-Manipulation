@@ -89,14 +89,26 @@ pickQuote.addEventListener(
 newQuote("#quote-title")
 
 // Part 9
-let blogPost = document.querySelectorAll(".blog-post");
+
+function mouseOver(ele, color){
+let blogPost = document.querySelectorAll(ele);
 
 blogPost.forEach(function (post) {
   console.log(post);
-  post.addEventListener("mouseOut", function () {
-    post.classList.toggle("orange");
+  post.addEventListener("mouseout", function () {
+    post.classList.toggle(color);
   });
-  post.addEventListener('mouseenter', function() {
-    post.classList.toggle('red');
+  // Instructions stated mouseenter but personally I thought that mouseover worked better.
+  // Yes, I looked up the difference between mouseover and mouseenter (source: geeksforgeeks)
+  post.addEventListener('mouseover', function() {
+    post.classList.toggle(color);
   });
 });
+}
+
+mouseOver(".blog-post", "red")
+
+
+//  Hungry for more
+mouseOver(".side-bar", "green")
+mouseOver("#quote-of-the-day", "blue")
